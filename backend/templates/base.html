@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Connexus</title>
+  <meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads and client-side image resizing. Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Generic page styles -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link rel="stylesheet" href="../assets/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="../assets/css/jquery.fileupload-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link rel="stylesheet" href="../assets/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="../assets/css/jquery.fileupload-ui-noscript.css"></noscript>
+
+</head>
+<body>
+    <div class="container-fluid">
+      <h1>Connex.us</h1>
+    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/manage">Manage</a>
+          </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/create">Create</a>
+          </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/view">View</a>
+          </div>
+          <!--<div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/search">Search</a>
+          </div>-->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/treading">Trending</a>
+          </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/social">Social</a>
+          </div>
+          <form action="/search", class="navbar-form navbar-left" role="search"  id="searchForm">
+            <div class="form-group ui-widget">
+              <input type="text" name="query", class="form-control" placeholder="Search" id="searchTerm", class="ui-autocomplete-input">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+          <div class="navbar-header navbar-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ login_logout_url|safe }}">{{ url_linktext}}</a>
+          </div>
+        </div><!-- /.container-fluid -->
+      </nav>
+
+    <br>
+    <div id="body">
+      {% block body %}
+      {% endblock %}
+    </div>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+    <script src="../assets/js/vendor/jquery.ui.widget.js"></script>
+    <!-- The Templates plugin is included to render the upload/download listings -->
+    <script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- blueimp Gallery script -->
+    <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script src="../assets/js/jquery.iframe-transport.js"></script>
+    <!-- The basic File Upload plugin -->
+    <script src="../assets/js/jquery.fileupload.js"></script>
+    <!-- The File Upload processing plugin -->
+    <script src="../assets/js/jquery.fileupload-process.js"></script>
+    <!-- The File Upload image preview & resize plugin -->
+    <script src="../assets/js/jquery.fileupload-image.js"></script>
+    <!-- The File Upload audio preview plugin -->
+    <script src="../assets/js/jquery.fileupload-audio.js"></script>
+    <!-- The File Upload video preview plugin -->
+    <script src="../assets/js/jquery.fileupload-video.js"></script>
+    <!-- The File Upload validation plugin -->
+    <script src="../assets/js/jquery.fileupload-validate.js"></script>
+    <!-- The File Upload user interface plugin -->
+    <script src="../assets/js/jquery.fileupload-ui.js"></script>
+
+    <script type="text/javascript" src="../assets/js/autocomplete.js"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

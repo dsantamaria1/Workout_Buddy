@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container-fluid">
+      <h2>Streams I own</h2>
+      {% if own_stream|length>0 %}
+      <form action="/api/deletestreams" method="post">
+        <table style="width:100%">
+          <tr>
+            <th>Name</th>
+            <th>Last New Picture</th>
+            <th>Number of Pictures</th>
+            <th>Delete</th>
+          </tr>
+          {% for s in own_stream %}
+            {% if s %}
+              <tr>
+                <td><a href="/view?stream_id={{ s['id'] }}"/>{{ s['name']}}</td>
+                <td> {{ s['updated_time'] }}</td>
+                <td> {{ s['size'] }}</td>
+                <td>
+                  <input type="checkbox" name="stream_id" value={{s['id']}} />
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+        <br>
+        <input type="submit" class="btn btn-danger" value="Delete Checked"/>
+        </form>
+        {% else %}
+        You do not own any stream. Please create one.
+        {% endif %}
+    </div>
+
+    <div class="container-fluid">
+      <h2> Streams I subscribe to </h2>
+      {% if sub_stream|length>0 %}
+      <form action="/api/unsubscribe" method="post">
+        <input type="hidden" name="user_id" value="{{ user_id }}"/>
+        <table style="width:100%">
+          <tr>
+            <th>Name</th>
+            <th>Last New Picture</th>
+            <th>Number of Pictures</th>
+            <th>Delete</th>
+          </tr>
+          {% for s in sub_stream %}
+            {% if s %}
+              <tr>
+                <td><a href="/view?stream_id={{ s['id'] }}"/>{{ s['name']}}</td>
+                <td> {{ s['updated_time'] }}</td>
+                <td> {{ s['size'] }}</td>
+                <td><input type="checkbox" name="stream_id" value={{s['id']}} /></td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+        <input type="submit" class="btn btn-danger" value="Unsubscribe"/>
+        </form>
+      {% else %}
+      You have not subscribed to any stream.
+      {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+from google.appengine.ext import ndb
+
+Stream{
+    stream_id
+    name
+    author
+    tags []
+    cover
+    updated_time
+    photo
+    views
+}
+
+Subscribe {
+    stream_id
+    user_id
+}

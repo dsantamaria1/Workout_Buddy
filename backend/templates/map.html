@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+<label id="stream_id" class="hidden">{{ stream_id }}</label>
+<div id="map_canvas"></div>
+<div>
+  <p>
+    <label for="date">Time range:</label>
+    <input type="text" id="date" readonly style="border:0; color:#f6931f; font-weight:bold; width: 200px">
+  </p>
+
+  <div id="slider-range" length="100px" height="2px"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-map/3.0-rc1/jquery.ui.map.js"></script>
+<script type="text/javascript" src="../assets/js/markercluster.min.js"></script>
+<script type="text/javascript" src="../assets/js/map.js"></script>
+{% endblock %}

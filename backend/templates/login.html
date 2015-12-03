@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <body>
+      <h1>Welcome to connexus!</h1>
+      <h2>Share the world!</h2>
+        <div>
+          {% if user%}
+            Hello, {{ user.nickname() }}! <br>
+          {% else %}
+            Hello, my friend! Login to see the content.<br>
+          {% endif %}
+          <a href="{{ login_logout_url|safe }}">{{ url_linktext}}</a>
+        </div>
+
+    </body>
+</html>
+{% endautoescape %}

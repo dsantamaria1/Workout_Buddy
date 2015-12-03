@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block body %}
+  <!--  <div class="ui-widget container-fluid form-group">
+      <form action="/search", method="get", id="searchForm">
+        <input class="control-form" type="text", name="query", id="searchTerm", class="ui-autocomplete-input"/>
+        <input class="btn btn-success", type="submit", name="Search"/>
+      </form>
+    </div>-->
+    <div class="container-fluid">
+      {% if streams|length > 0 %}
+      {{ streams|length }} results for: {{ query }}<br>
+      click on an image to view stream
+      <table>
+        {% for s in streams %}
+        <tr>
+          <td><a href="/view?stream_id={{ s.stream_id }}">{{ s.name }}</a></td>
+          <br>
+          {% if s.cover %}
+          <td><a href="/view?stream_id={{ s.stream_id }}"><img src="/img?photo_id={{ s.cover }}"
+            height="200" width="200"/></a></td>
+          {% else %}
+          <td>
+            <a href="/view?stream_id={{ s.stream_id }}">
+              <img src="http://www.camping-oaza.com/images/joomlart/demo/default.jpg" height="200" width="200"/><br>
+            </a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </table>
+      {% elif query|length > 0 %}
+        No matched stream!
+        {% else %}
+        Welcome to Search Page! Please type in key words.
+      {% endif %}
+
+    </div>
+{% endblock %}
