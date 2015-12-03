@@ -1,0 +1,69 @@
+#navcontainer ul
+{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+
+#navcontainer ul li { display: inline; }
+
+#navcontainer ul li a
+{
+  text-decoration: none;
+  padding: .2em 1em;
+  color: #fff;
+  background-color: #036;
+}
+
+.box_inline {
+  display: inline-block;
+  width: 200px;
+  margin: 0;
+}
+
+.inputbox {
+  rows="3";
+  cols="60";
+}
+
+.clear {
+  clear: both;
+}
+
+td {
+  text-align: left;
+}
+
+#map_canvas {
+  width: 800px;
+  height: 500px;
+}
+
+.hidden {
+  display:none;
+}
+
+.white {
+    color: #FFFFFF;
+}
+
+#darkgrey {
+  background-color: #A9A000;
+}
+
+#lrgTxt {
+  font-size: 15px;
+  font-style: bold;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #FFFFFF
+}
+
+#GEOVIEW {
+  font-size: 25px;
+  font-style: italic;
+  border-radius: 15px;
+  background-color: #00FF00;
+  color: #FFFFFF
+}
