@@ -3,12 +3,17 @@
     <div class="container-fluid">
       {% if allphotos|length > 0 %}
       <div class="row">
-        {% for p in allphotos %}
-          <div class="col-sm-3">
+        {% for p in woPics %}
+          <div class="col-md-4">
             <img src="/img?photo_id={{ p }}", height="200", width="200"/>
           </div>
         {% endfor %}
-        <div class="col-sm-3">
+        {% for i in woInstructions %}
+          <div class="col-md-4">
+            <a> {{i}}</a>
+          </div>
+        {% endfor %}
+        <div class="row">
         {% if multipage==True %}
         <form action="/view?stream_id={{stream_id}}, st={{ st }}", method="get">
           <input type="hidden" name="stream_id" value={{ stream_id }} />
@@ -21,6 +26,7 @@
             <input id="lrgTxt", type="submit", value="More Pictures"/>
           {% endif %}
         </form>
+
         {% else %}
         This is the only page in the stream.
         {% endif %}
@@ -51,8 +57,21 @@
 -->
       <form id="fileupload" action="/api/upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="stream_id" value={{ stream_id }} />
-            <input type="textbox" name="description" placeholder="Exercise Description" style="width: 400px; height: 250px"/>
-            Exercise Step: <input type="textbox" name="step" placeholder="Step 1"/>
+           <div class="row">
+            <div class="col-sm-4">
+              <!--
+              <input type="textbox" name="description" placeholder="Exercise Description" wrap="virtual" style="width: 400px; height: 250px"/>
+            -->
+              Exercise Step: <input type="textbox" name="step" placeholder="Step 1"/>
+              <textarea name="description" placeholder="Exercise Description" cols="50" rows="10"></textarea>
+            </div>
+            <div class="col-sm-3">
+              <input type="radio" name="woType" value="0" checked> Upper Body Push<br>
+              <input type="radio" name="woType" value="1" checked> Upper Body Pull<br>
+              <input type="radio" name="woType" value="2" checked> Lower Body Push<br>
+              <input type="radio" name="woType" value="3" checked> Lower Body Pull<br>
+            </div>
+          </div>
               <!-- Redirect browsers with JavaScript disabled to the origin page -->
               <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
               <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->

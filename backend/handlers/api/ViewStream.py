@@ -22,6 +22,9 @@ class ViewStream(webapp2.RequestHandler):
         st = min(max(st, 1), length)
         ed = min(st + 3, length + 1)
         images = stream.photos[-st:-ed:-1]
+
+        woPics=stream.woPics
+        woInstructions=stream.woInstructions
         if self.request.get('all'):
             images = stream.photos[:]
         if ed == length + 1:
@@ -45,4 +48,6 @@ class ViewStream(webapp2.RequestHandler):
             'st': st,
             'ed': ed,
             'size': length,
+            'woPics': woPics,
+            'woInstructions': woInstructions,
         }))
