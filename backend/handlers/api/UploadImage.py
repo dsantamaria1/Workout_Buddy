@@ -1,5 +1,5 @@
 import json
-
+import ast
 import webapp2
 import urllib
 import re
@@ -101,6 +101,10 @@ class UploadImage(webapp2.RequestHandler):
         comment = self.request.get('comment')
         lat = self.request.get('Latitude')
         lng = self.request.get('Longitude')
+        description = self.request.get('description')
+        step = self.request.get('step')
+        woInstructions = {}
+        woPics = {}
 
         if (lat == '') or (lng == ''):
             lat = 0.0
@@ -110,9 +114,36 @@ class UploadImage(webapp2.RequestHandler):
         key = photo.put()
 
         stream = Stream.query_by_id(int(stream_id))
+        if(stream.woPics == None):
+            print "no pics in steps"
+            woPics[step]=key.id()
+        else:
+            print "pics present"
+            woPics= stream.woPics
+            if type(woPics) is not dict:
+                woPics = ast.literal_eval(woPics)
+
+            woPics[step]=key.id()
+            print woPics
+
+        if(stream.woInstructions == None):
+            print "no inst in steps"
+            woInstructions[step] = description
+        else:
+            print "inst present"
+            woInstructions=stream.woInstructions
+            if type(woInstructions) is not dict:
+                woInstructions=ast.literal_eval(woInstructions)
+                
+            woInstructions[step] = description
+            print woInstructions
+
         if len(stream.cover) == 0:
             stream.cover = str(key.id())
+
         stream.photos.append(key.id())
+        stream.woPics = woPics
+        stream.woInstructions = woInstructions
         stream.put()
 
 
@@ -137,7 +168,6 @@ class UploadImage(webapp2.RequestHandler):
                         status_code = 201
                 finally:
                     mutex.release()
-
 
         else:
             status_code = 200

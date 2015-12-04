@@ -10,6 +10,8 @@ class Stream(ndb.Model):
     cover = ndb.StringProperty()
     views = ndb.IntegerProperty()
     updated_time = ndb.DateTimeProperty(auto_now_add=True)
+    woPics = ndb.JsonProperty()
+    woInstructions = ndb.JsonProperty()
 
     @classmethod
     def query_by_author(cls, author_key):

@@ -35,6 +35,7 @@
       No photo in this stream yet!
       {% endif %}
     </div>
+
 <br>
     <div class="container-fluid">
 <!--      <form action="/api/upload", enctype="multipart/form-data", method="post">
@@ -50,6 +51,8 @@
 -->
       <form id="fileupload" action="/api/upload" method="post" enctype="multipart/form-data">
         <input type="hidden" name="stream_id" value={{ stream_id }} />
+            <input type="textbox" name="description" placeholder="Exercise Description" style="width: 400px; height: 250px"/>
+            Exercise Step: <input type="textbox" name="step" placeholder="Step 1"/>
               <!-- Redirect browsers with JavaScript disabled to the origin page -->
               <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
               <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
