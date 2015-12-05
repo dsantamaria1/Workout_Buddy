@@ -8,6 +8,9 @@ from handlers.Social import Social
 from handlers.Treading import Treading
 from handlers.Search import Search
 from handlers.Map import Map
+from handlers.StartWorkout import StartWorkout
+from handlers.GenPush import GenPush
+from handlers.GenPull import GenPull
 
 from handlers.api.CreateStream import CreateStream
 from handlers.api.UserManagement import UserManagement
@@ -53,4 +56,7 @@ app = webapp2.WSGIApplication([
     ('/create', Create),
     ('/view', View),
     ('/map', Map),
+    ('/workout', StartWorkout),
+    ('/genUpPush', GenPush),
+    ('/genUpPull', GenPull),
 ], debug = True)

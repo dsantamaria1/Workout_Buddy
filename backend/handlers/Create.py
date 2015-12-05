@@ -39,7 +39,8 @@ class Create(webapp2.RequestHandler):
                                                         "author": user.user_id(),
                                                         "tags": self.request.get('tags'),
                                                         "cover_url": self.request.get('cover_url'),
-                                                        "email": user.email()
+                                                        "email": user.email(),
+                                                        "woType": self.request.get('woType')
                                                         })
 
         status_code = 1
