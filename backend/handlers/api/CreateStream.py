@@ -21,6 +21,8 @@ class CreateStream(webapp2.RequestHandler):
         author = self.request.get('author')
         tags = self.request.get('tags').split()
         cover = self.request.get('cover_url')
-        stream = Stream(name=name, author=author, tags=tags, email=email, cover=cover, views=0, photos=[])
+        woType = self.request.get('woType') #dsm TODO: get_all or get
+        stream = Stream(name=name, author=author, tags=tags, email=email, cover=cover, views=0, photos=[],
+                        woType=woType)
         key = stream.put()
         self.response.write(json.dumps({'status_code': 0, 'key': key.id()}))
