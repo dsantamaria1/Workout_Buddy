@@ -2,7 +2,6 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 
 class Stream(ndb.Model):
-    name = ndb.StringProperty()
     author = ndb.StringProperty()
     email = ndb.StringProperty()
     tags = ndb.StringProperty(repeated=True)
@@ -10,6 +9,7 @@ class Stream(ndb.Model):
     cover = ndb.StringProperty()
     views = ndb.IntegerProperty()
     updated_time = ndb.DateTimeProperty(auto_now_add=True)
+    name = ndb.StringProperty()
     woPics = ndb.JsonProperty()
     woInstructions = ndb.JsonProperty()
     woType = ndb.StringProperty()

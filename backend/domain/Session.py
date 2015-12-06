@@ -6,4 +6,8 @@ class Session(ndb.Model):
     reps = ndb.StringProperty()
     currWO = ndb.IntegerProperty()
     step = ndb.IntegerProperty()
-    active = ndb.BooleanPreperty()
+    active = ndb.BooleanProperty()
+
+    @classmethod
+    def query_by_id(cls, key):
+        return cls.get_by_id(key)

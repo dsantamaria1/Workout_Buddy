@@ -60,7 +60,7 @@ app = webapp2.WSGIApplication([
     ('/map', Map),
     ('/workout', StartWorkout),
     ('/genWorkout', GenWorkout),
-    ('/displayWorkout', DisplayWorkout),
     ('/api/genPush', GenPush),
+    ('/displayWorkout', DisplayWorkout),
     ('/api/activateSession', ActivateSession),
 ], debug = True)

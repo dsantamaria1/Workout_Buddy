@@ -19,8 +19,10 @@ class GenWorkout(webapp2.RequestHandler):
 
         template_values = resp.json()
         session = Session(category=template_values['category'],exercises=template_values['exercises'],
-                          reps=template_values['reps'],currWO=0,step=0,active=False)
+                          reps=template_values['reps'],currWO=0,step=1,active=False)
 
+        key = session.put()
+        template_values['session_id']=key.id()
         template = JINJA_ENVIRONMENT.get_template('startWorkout.html')
         self.response.write(template.render(template_values))
         #self.response.write(template_values)

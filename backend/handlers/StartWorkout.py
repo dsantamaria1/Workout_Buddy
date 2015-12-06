@@ -6,3 +6,4 @@ class StartWorkout(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('chooseWorkout.html')
         self.response.write(template.render())
+        #dsm TODO: delete inactive sessions
