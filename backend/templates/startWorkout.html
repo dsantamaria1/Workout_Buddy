@@ -2,20 +2,28 @@
 {% block body %}
   <div class="container-fluid">
     <div class="row">
+      <h1>Category: {{category}}</h1><br>
+      <h1> Summary of Workout</h1>
 
-      <div class="col-md-3">
-        <form action="/genWorkout", method="get">
-          <input type="submit", value="Upper Body Push/Lower Body Pull", name="WoSel"/>
-        </form>
+      <div class="col-md-4">
+        <h3>Exercise 1: {{exercise1}}</h3>
+        <h3>Exercise 2: {{exercise2}}</h3>
       </div>
-
       <div class="col-md-3">
-        <form action="/genWorkout", method="get">
-          <input type="submit", value="Upper Body Pull/Lower Body Push", name="WoSel"/>
-        </form>
+        <h3>{{reps}}</h3>
+        <h3>{{reps}}</h3>
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <form action="/displayWorkout", method="get">
+          <input type="submit", value="Start Workout", name="WoSel"/>
+        </form>
+      </div>
+    </div>
+
   </div>
 
 {% endblock %}

@@ -12,9 +12,13 @@ class GenWorkout(webapp2.RequestHandler):
         BASE = GetPath(self.request.url, self.request.path)
 
         if result:
-            print BASE
             resp = requests.get(BASE+"/api/genPush", params={'category': 0})
         else:
             resp = requests.get(BASE+"/api/genPush", params={'category': 1})
 
-        self.redirect('/')
+        template_values = resp.json()
+
+
+        template = JINJA_ENVIRONMENT.get_template('startWorkout.html')
+        self.response.write(template.render(template_values))
+        #self.response.write(template_values)

@@ -8,11 +8,11 @@ class GenPush(webapp2.RequestHandler):
 
         parameter = self.request.get('category')
         if int(parameter) == 0:
-            print "santa GenPush"
+            category = 'Upper Body Push/Lower Body Pull'
             PushQuery = Stream.query(Stream.woType == '0') #upper push
             PullQuery = Stream.query(Stream.woType == '3') #lower pull
         else:
-            print "santa GenPull"
+            category = 'Upper Body Pull/Lower Body Push'
             PullQuery = Stream.query().filter(Stream.woType == '1') #upper pull
             PushQuery = Stream.query().filter(Stream.woType == '2') # lower push
 
@@ -28,7 +28,8 @@ class GenPush(webapp2.RequestHandler):
         reps = random.choice(['5x5','4x10','4x15'])
         workouts = {'reps': reps,
                     'exercise1': pushExercise,
-                    'exercise2': pullExercise
+                    'exercise2': pullExercise,
+                    'category': category
                     }
         print json.dumps(workouts)
         self.response.write(json.dumps(workouts))
