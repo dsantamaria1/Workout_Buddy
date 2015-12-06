@@ -10,6 +10,7 @@ from handlers.Search import Search
 from handlers.Map import Map
 from handlers.StartWorkout import StartWorkout
 from handlers.GenWorkout import GenWorkout
+from handlers.DisplayWorkout import DisplayWorkout
 
 from handlers.api.CreateStream import CreateStream
 from handlers.api.UserManagement import UserManagement
@@ -29,6 +30,7 @@ from handlers.api.UploadWithURL import UploadWithURL
 from handlers.api.GetRecentSubscribeImage import GetRecentSubscribeImage
 from handlers.api.GetAllPhotos import GetAllPhotos
 from handlers.api.GenPush import GenPush
+from handlers.api.ActivateSession import ActivateSession
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -58,5 +60,7 @@ app = webapp2.WSGIApplication([
     ('/map', Map),
     ('/workout', StartWorkout),
     ('/genWorkout', GenWorkout),
+    ('/displayWorkout', DisplayWorkout),
     ('/api/genPush', GenPush),
+    ('/api/activateSession', ActivateSession),
 ], debug = True)

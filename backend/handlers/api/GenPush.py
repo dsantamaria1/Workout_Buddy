@@ -22,13 +22,13 @@ class GenPush(webapp2.RequestHandler):
         for x in PullQuery:
             PullList.append(x.name)
 
-
-        pushExercise = random.choice(PushList)
-        pullExercise = random.choice(PullList)
+        exerciseList = []
+        exerciseList.append(random.choice(PushList))
+        exerciseList.append(random.choice(PullList))
         reps = random.choice(['5x5','4x10','4x15'])
+
         workouts = {'reps': reps,
-                    'exercise1': pushExercise,
-                    'exercise2': pullExercise,
+                    'exercises': exerciseList,
                     'category': category
                     }
         print json.dumps(workouts)
