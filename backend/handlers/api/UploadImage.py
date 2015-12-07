@@ -134,9 +134,8 @@ class UploadImage(webapp2.RequestHandler):
             woInstructions=stream.woInstructions
             if type(woInstructions) is not dict:
                 woInstructions=ast.literal_eval(woInstructions)
-                
+
             woInstructions[step] = description
-            print woInstructions
 
         if len(stream.cover) == 0:
             stream.cover = str(key.id())
@@ -144,6 +143,8 @@ class UploadImage(webapp2.RequestHandler):
         stream.photos.append(key.id())
         stream.woPics = woPics
         stream.woInstructions = woInstructions
+        print "number of keys is %d" % len(woPics.keys())
+        stream.totalSteps = len(woPics.keys())
         stream.put()
 
 

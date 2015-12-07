@@ -26,10 +26,12 @@ class GenPush(webapp2.RequestHandler):
         exerciseList.append(random.choice(PushList))
         exerciseList.append(random.choice(PullList))
         reps = random.choice(['5x5','4x10','4x15'])
+        totalWOs = len(exerciseList)
 
         workouts = {'reps': reps,
                     'exercises': exerciseList,
-                    'category': category
+                    'category': category,
+                    'totalWOs': totalWOs
                     }
         print json.dumps(workouts)
         self.response.write(json.dumps(workouts))
