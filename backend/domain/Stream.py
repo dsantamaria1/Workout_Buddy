@@ -13,6 +13,7 @@ class Stream(ndb.Model):
     woPics = ndb.JsonProperty()
     woInstructions = ndb.JsonProperty()
     woType = ndb.StringProperty()
+    totalSteps = ndb.IntegerProperty()
 
     @classmethod
     def query_by_author(cls, author_key):

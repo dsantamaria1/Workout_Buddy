@@ -14,11 +14,20 @@
   </div>
 
   <div class="row">
-
+    {%if lastWO == True and lastStep == True%}
+      <form action="/endWorkout?session_id={{session_id}}", method="post">
+        <input type="submit", value="End Workout", name="WoSel"/>
+      </form>
+    {%elif lastStep == True%}
+      <form action="/displayWorkout?session_id={{session_id}}&incStep=0&incWO=1", method="post">
+        <input type="submit", value="Next Workout", name="WoSel"/>
+      </form>
+    {% else %}
+      <form action="/displayWorkout?session_id={{session_id}}&incStep=1&incWO=0", method="post">
+        <input type="submit", value="Next", name="WoSel"/>
+      </form>
+    {% endif %}
   </div>
 
-  <div class="row">
-
-  </div>
 </div>
 {% endblock %}

@@ -7,6 +7,7 @@ class Session(ndb.Model):
     currWO = ndb.IntegerProperty()
     step = ndb.IntegerProperty()
     active = ndb.BooleanProperty()
+    totalWOs = ndb.IntegerProperty()
 
     @classmethod
     def query_by_id(cls, key):
