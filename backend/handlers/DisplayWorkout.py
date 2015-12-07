@@ -17,6 +17,10 @@ class DisplayWorkout(webapp2.RequestHandler):
 
     def post(self):
         session_id = self.request.get('session_id')
+        incStep = self.request.get('incStep')
+        incWO = self.request.get('incWO')
         BASE = GetPath(self.request.url, self.request.path)
-        resp = requests.post(BASE+"/api/activateSession?", params={"session_id": session_id})
+        resp = requests.post(BASE+"/api/activateSession?", params={"session_id": session_id,
+                                                                   "incStep": incStep,
+                                                                   "incWO": incWO})
         self.redirect('/displayWorkout?session_id=' + session_id)

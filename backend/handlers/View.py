@@ -34,11 +34,22 @@ class View(webapp2.RequestHandler):
             print data
             re = requests.get(BASE+"/api/view", params=data)
             allphotos = []
+            woPicsList = []
+            woInstList = []
             st = 1
             multipage = True
             if re:
                 allphotos = re.json()['images'] #get three photo each time.
                 st = re.json()['ed']
+                woPics=re.json()['woPics']
+                woInstructions=re.json()['woInstructions']
+                if woInstructions is not None:
+                    sortedList= sorted(woInstructions.keys())
+                    for x in sortedList:
+                        #print "santamaria"
+                        woPicsList.append(woPics[x])
+                        woInstList.append(woInstructions[x])
+
                 if re.json()['size'] < 4:
                     multipage = False
             #if user doesn't own the stream, he should not upload photo
@@ -59,6 +70,8 @@ class View(webapp2.RequestHandler):
                 'subscribed': subscribed,
                 'st': st,
                 'multipage': multipage,
+                'woPics': woPicsList,
+                'woInstructions': woInstList,
             }
 
             template = JINJA_ENVIRONMENT.get_template('viewstream.html')

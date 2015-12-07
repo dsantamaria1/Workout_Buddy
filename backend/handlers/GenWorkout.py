@@ -19,7 +19,8 @@ class GenWorkout(webapp2.RequestHandler):
 
         template_values = resp.json()
         session = Session(category=template_values['category'],exercises=template_values['exercises'],
-                          reps=template_values['reps'],currWO=0,step=1,active=False)
+                          reps=template_values['reps'],currWO=0,step=1,active=False,
+                          totalWOs=template_values['totalWOs'])
 
         key = session.put()
         template_values['session_id']=key.id()
