@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -36,8 +37,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void newWorkout() {
-        Intent intent = new Intent(this, .class);
+    public void newWorkout(View view) {
+        Intent intent = new Intent(this, GenWorkout.class);
         startActivity(intent);
     }
 
