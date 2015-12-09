@@ -1,36 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.mycompany.workoutbuddy.GenWorkout"
-    android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/category"/>
 
-    <ListView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/exerciseList"
-        android:layout_below="@id/category"
-        android:layout_alignParentLeft="true">
-    </ListView>
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reps"
-        android:layout_below="@id/category"
-        android:layout_alignParentRight="true">
-    </ListView>
+    <LinearLayout
+        android:id="@+id/lower_linear_layout"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/exerciseList"
-        android:text="Start Workout"/>
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@+id/lower_linear_layout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:id="@+id/leftCol"
+            android:layout_above="@+id/org_right_bottom_rl"
+            android:layout_alignParentLeft="true">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/org_left_linearlayout2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/exercise_title"
+                    android:textSize="30dp"
+                    android:text="Exercise"/>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lstLeft"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@+id/org_left_linearlayout2"
+                android:cacheColorHint="#00000000"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/lower_linear_layout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/org_right_bottom_rl"
+            android:layout_alignParentLeft="true">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/org_right_linearlayout2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sets"
+                    android:textSize="30dp"
+                    android:text="Sets"/>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lstRight"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/org_right_linearlayout2"
+                android:cacheColorHint="#00000000"/>
+
+            <RelativeLayout
+                android:id="@+id/org_right_bottom_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+                <Button
+                    android:text="Start Workout"
+                    android:id="@+id/button_8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                </Button>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
