@@ -1,5 +1,6 @@
 import webapp2, random, json
 from domain.Stream import Stream
+from domain.Session import Session
 
 class GenPush(webapp2.RequestHandler):
     def get(self):
@@ -28,10 +29,16 @@ class GenPush(webapp2.RequestHandler):
         reps = random.choice(['5x5','4x10','4x15'])
         totalWOs = len(exerciseList)
 
+        session = Session(category=category, exercises=exerciseList,reps=reps,currWO=0,
+                          step=1,active=False,totalWOs=totalWOs,completed=False)
+
+        key = session.put()
+        session_id=key.id()
         workouts = {'reps': reps,
                     'exercises': exerciseList,
                     'category': category,
-                    'totalWOs': totalWOs
+                    'totalWOs': totalWOs,
+                    'session_id': session_id
                     }
         print json.dumps(workouts)
         self.response.write(json.dumps(workouts))

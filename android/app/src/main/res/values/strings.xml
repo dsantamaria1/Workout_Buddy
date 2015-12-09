@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Workout Buddy</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_gen_workout">GenWorkout</string>
+</resources>
