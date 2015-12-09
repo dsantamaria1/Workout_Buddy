@@ -11,6 +11,8 @@ from handlers.Map import Map
 from handlers.StartWorkout import StartWorkout
 from handlers.GenWorkout import GenWorkout
 from handlers.DisplayWorkout import DisplayWorkout
+from handlers.EndWorkout import EndWorkout
+from handlers.DispWorkoutHist import DispWorkoutHist
 
 from handlers.api.CreateStream import CreateStream
 from handlers.api.UserManagement import UserManagement
@@ -31,6 +33,7 @@ from handlers.api.GetRecentSubscribeImage import GetRecentSubscribeImage
 from handlers.api.GetAllPhotos import GetAllPhotos
 from handlers.api.GenPush import GenPush
 from handlers.api.ActivateSession import ActivateSession
+from handlers.api.LogWorkout import LogWorkout
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -63,4 +66,7 @@ app = webapp2.WSGIApplication([
     ('/api/genPush', GenPush),
     ('/displayWorkout', DisplayWorkout),
     ('/api/activateSession', ActivateSession),
+    ('/endWorkout', EndWorkout),
+    ('/api/logWorkout', LogWorkout),
+    ('/dispWorkoutHist', DispWorkoutHist)
 ], debug = True)

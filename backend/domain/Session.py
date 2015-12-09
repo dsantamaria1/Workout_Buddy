@@ -8,6 +8,8 @@ class Session(ndb.Model):
     step = ndb.IntegerProperty()
     active = ndb.BooleanProperty()
     totalWOs = ndb.IntegerProperty()
+    completed = ndb.BooleanProperty()
+    started = ndb.DateTimeProperty(auto_now_add=True)
 
     @classmethod
     def query_by_id(cls, key):
