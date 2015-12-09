@@ -13,8 +13,8 @@ class GenPush(webapp2.RequestHandler):
             PullQuery = Stream.query(Stream.woType == '3') #lower pull
         else:
             category = 'Upper Body Pull/Lower Body Push'
-            PullQuery = Stream.query().filter(Stream.woType == '1') #upper pull
-            PushQuery = Stream.query().filter(Stream.woType == '2') # lower push
+            PullQuery = Stream.query(Stream.woType == '1') #upper pull
+            PushQuery = Stream.query(Stream.woType == '2') # lower push
 
         for x in PushQuery:
             PushList.append(x.name)

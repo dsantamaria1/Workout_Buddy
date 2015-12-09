@@ -13,7 +13,7 @@ class EndWorkout(webapp2.RequestHandler):
             print "user is %s" % user
             resp = requests.post(BASE+"/api/logWorkout",
                                  params={"session_id": session_id, "user": user})
-            self.redirect('/workout')
+            self.redirect('/dispWorkoutHist')
         else:
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
