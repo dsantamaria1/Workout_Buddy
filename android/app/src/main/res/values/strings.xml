@@ -2,4 +2,6 @@
     <string name="app_name">Workout Buddy</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_gen_workout">GenWorkout</string>
+    <string name="title_activity_choose_workout">ChooseWorkout</string>
+    <string name="title_activity_display_workout">DisplayWorkout</string>
 </resources>

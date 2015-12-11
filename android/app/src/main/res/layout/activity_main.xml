@@ -9,14 +9,14 @@
     <!--<TextView android:text="Hello World!" android:layout_width="wrap_content"
         android:layout_height="wrap_content" /> -->
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/new_workout"
         android:text="New Workout!"
         android:onClick="newWorkout"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/new_run"
         android:text="New Run!"
@@ -24,7 +24,7 @@
         android:onClick="newRun"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/my_workout"
         android:text="My Workouts"
@@ -32,7 +32,7 @@
         android:onClick="myWorkouts"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/run_history"
         android:text="Run History"

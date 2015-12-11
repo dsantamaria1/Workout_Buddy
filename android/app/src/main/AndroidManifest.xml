@@ -24,6 +24,14 @@
             android:name=".GenWorkout"
             android:label="@string/title_activity_gen_workout" >
         </activity>
+        <activity
+            android:name=".ChooseWorkout"
+            android:label="@string/title_activity_choose_workout" >
+        </activity>
+        <activity
+            android:name=".DisplayWorkout"
+            android:label="@string/title_activity_display_workout" >
+        </activity>
     </application>
 
 </manifest>

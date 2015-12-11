@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void newWorkout(View view) {
-        Intent intent = new Intent(this, GenWorkout.class);
+        Intent intent = new Intent(this, ChooseWorkout.class);
         startActivity(intent);
     }
 

@@ -9,24 +9,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
 import java.util.List;
 import java.util.ArrayList;
 import android.content.Context;
+import android.content.Intent;
 
 public class GenWorkout extends ActionBarActivity {
     private String TAG  = "GenWorkout";
     Context context = this;
+    public final static String IncWO = "incWO";
+    public final static String IncStep = "incStep";
+    public final static String SESSION_ID = "session_id";
+    String session_id = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gen_workout);
-
-        final String request_url = "http://Workoutbuddy-1153.appspot.com/api/genPush?category=0";
-
+        Intent intent = getIntent();
+        int workout = intent.getIntExtra(ChooseWorkout.PUSH_PULL, -1);
+        final String base_url = "http://Workoutbuddy-1153.appspot.com/api/genPush?category=";
+        String request_url = base_url + workout;
+        System.out.println(request_url);
         AsyncHttpClient httpClient = new AsyncHttpClient();
         httpClient.get(request_url, new AsyncHttpResponseHandler() {
             @Override
@@ -38,8 +46,9 @@ public class GenWorkout extends ActionBarActivity {
                     List<String> exList = new ArrayList<String>();
                     List<String> setsList = new ArrayList<String>();
                     JSONObject jObject = new JSONObject(new String(response));
-                    String category = jObject.getString("category");
                     String reps = jObject.getString("reps");
+                    session_id = jObject.getString("session_id");
+                    //String category = jObject.getString("category");
                     //TextView textView = (TextView) findViewById(R.id.category);
                     //textView.setText("Category: " + category);
                     JSONArray ExerciseList = jObject.getJSONArray("exercises");
@@ -63,5 +72,13 @@ public class GenWorkout extends ActionBarActivity {
                 Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
             }
         });
+    }
+
+    public void ShowSteps(View view){
+        Intent intent = new Intent(this, DisplayWorkout.class);
+        intent.putExtra(SESSION_ID, session_id);
+        intent.putExtra(IncStep, 0);
+        intent.putExtra(IncWO, 0);
+        startActivity(intent);
     }
 }
