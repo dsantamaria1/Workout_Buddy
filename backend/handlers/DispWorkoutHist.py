@@ -11,7 +11,7 @@ class DispWorkoutHist(webapp2.RequestHandler):
         if user:
             print "user is %s" % user
             resp = requests.get(BASE+"/api/logWorkout",
-                                 params={"user": user})
+                                 params={"email": user.email()})
             template_values = resp.json()
             print template_values
             template = JINJA_ENVIRONMENT.get_template('workoutLog.html')

@@ -4,8 +4,8 @@ from domain.WorkoutLogs import WorkoutLogs
 
 class LogWorkout(webapp2.RequestHandler):
     def get(self):
-        user = self.request.get('user')
-        workoutLogs = WorkoutLogs.query_by_id(user)
+        email = self.request.get('email')
+        workoutLogs = WorkoutLogs.query_by_id(email)
         exerciseDict = {}
         repsDict = {}
         dateDict = {}
@@ -28,16 +28,16 @@ class LogWorkout(webapp2.RequestHandler):
 
 
     def post(self):
-        user = self.request.get('user')
+        email = self.request.get('email')
         session_id = int(self.request.get('session_id'))
         session = Session.query_by_id(session_id)
         session.completed=True
-        workoutLogs = WorkoutLogs.query_by_id(user)
+        workoutLogs = WorkoutLogs.query_by_id(email)
 
         print workoutLogs
         if workoutLogs == None:
             print "creating log"
-            workoutLogs = WorkoutLogs(id=user)
+            workoutLogs = WorkoutLogs(id=email)
             workoutLogs.WoHistory.append(session_id)
         else:
             workoutLogs.WoHistory.append(session_id)
