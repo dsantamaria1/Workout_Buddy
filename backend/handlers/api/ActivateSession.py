@@ -11,8 +11,10 @@ class ActivateSession(webapp2.RequestHandler):
 
         if session.step >= stream[0].totalSteps:
             lastStep = True
+            step_ = stream[0].totalSteps
         else:
             lastStep = False
+            step_ = session.step
 
         if session.currWO >= (session.totalWOs - 1): # subtract 1 because exerciseList starts at element 0
             lastWO = True
@@ -22,8 +24,8 @@ class ActivateSession(webapp2.RequestHandler):
             print "This is NOT the last workout. currWO = %d, totalWOs = %d" % (session.currWO, session.totalWOs)
 
         myDict = {"session_id": session_id,
-                  "photo": stream[0].woPics[unicode(session.step)], #get the first pic
-                  "instructions": stream[0].woInstructions[unicode(session.step)],
+                  "photo": stream[0].woPics[unicode(step_)], #get the first pic
+                  "instructions": stream[0].woInstructions[unicode(step_)],
                   "name": stream[0].name,
                   "lastStep": lastStep,
                   "lastWO": lastWO}
@@ -41,8 +43,9 @@ class ActivateSession(webapp2.RequestHandler):
             session.step +=1
             print "incrementing steps"
 
-        if (int(incWO) == 1):
-            session.step = 1 #start at step 1 for next workout
-            session.currWO +=1
-            print "incrementing WORKOUT and resetting steps"
+        if ((int(incWO) == 1)):
+            if (session.currWO + 1) <= session.totalWOs:
+                session.step = 1 #start at step 1 for next workout
+                session.currWO +=1
+                print "incrementing WORKOUT and resetting steps"
         session.put()

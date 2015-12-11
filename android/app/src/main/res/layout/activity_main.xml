@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/my_workout"
         android:text="My Workouts"
+        android:clickable="false"
         android:layout_below="@id/new_run"
         android:onClick="myWorkouts"/>
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/run_history"
         android:text="Run History"
+        android:clickable="false"
         android:layout_below="@id/my_workout"
         android:onClick="runHistory"/>
 

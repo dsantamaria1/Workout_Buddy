@@ -77,8 +77,8 @@ public class GenWorkout extends ActionBarActivity {
     public void ShowSteps(View view){
         Intent intent = new Intent(this, DisplayWorkout.class);
         intent.putExtra(SESSION_ID, session_id);
-        intent.putExtra(IncStep, 0);
-        intent.putExtra(IncWO, 0);
+        //intent.putExtra(IncStep, 0);
+        //intent.putExtra(IncWO, 0);
         startActivity(intent);
     }
 }
