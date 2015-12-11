@@ -1,8 +1,12 @@
 package com.mycompany.workoutbuddy;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import android.content.Context;
@@ -81,12 +85,26 @@ public class DisplayWorkout extends ActionBarActivity {
 
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        Toast.makeText(context, "Workout Logged.", Toast.LENGTH_SHORT).show();
+                                        if(MainActivity.email != null) {
+                                            logWorkout();
+                                            Toast.makeText(context, "Workout Logged.", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(context, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            //TODO: add login capability if not currently logged in.
+                                            Toast.makeText(context, "You are not Logged in.", Toast.LENGTH_LONG).show();
+                                        }
                                     }
                                 });
                                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        startActivity(intent);
+                                        DisplayWorkout.this.finish();
+                                        //finish();
                                     }
                                 });
                                 builder.show();
@@ -100,6 +118,7 @@ public class DisplayWorkout extends ActionBarActivity {
                                 intent.putExtra(GenWorkout.IncStep, step);
                                 intent.putExtra(GenWorkout.IncWO, WO);
                                 startActivity(intent);
+                                //finish();
                             }
                             else{ // go to next step
                                 int step = 1; int WO = 0;
@@ -110,6 +129,8 @@ public class DisplayWorkout extends ActionBarActivity {
                                 intent.putExtra(GenWorkout.IncStep, step);
                                 intent.putExtra(GenWorkout.IncWO, WO);
                                 startActivity(intent);
+                                //TODO: add swipe left capability
+                                //finish();
                             }
                         }
                     });
@@ -136,11 +157,30 @@ public class DisplayWorkout extends ActionBarActivity {
         AsyncHttpClient httpClient = new AsyncHttpClient();
         httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
             @Override
-            public void onSuccess ( int statusCode, Header[] headers,byte[] response){
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 Log.w("async", "success!!!!");
             }
 
-            public void onFailure ( int statusCode, Header[] headers,byte[] errorResponse, Throwable e){
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
+            }
+        });
+    }
+
+    public void logWorkout(){
+        System.out.println(MainActivity.email);
+        final String request_url = "http://Workoutbuddy-1153.appspot.com/api/logWorkout";
+        RequestParams params = new RequestParams();
+        params.put("session_id", session_id);
+        params.put("email", MainActivity.email);
+        AsyncHttpClient httpClient = new AsyncHttpClient();
+        httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                Log.w("async", "log workout success!!!!");
+            }
+
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                 Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
             }
         });

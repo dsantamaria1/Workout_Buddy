@@ -32,6 +32,10 @@
             android:name=".DisplayWorkout"
             android:label="@string/title_activity_display_workout" >
         </activity>
+        <activity
+            android:name=".WorkoutHistory"
+            android:label="@string/title_activity_workout_history" >
+        </activity>
     </application>
 
 </manifest>
