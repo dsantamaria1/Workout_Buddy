@@ -3,93 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    >
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/exercise_title"
+        android:textSize="35dp"
+        android:text="Exercises"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        />
 
-    <LinearLayout
-        android:id="@+id/lower_linear_layout"
-        android:orientation="horizontal"
+    <ListView
+        android:id="@+id/lstRight"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/org_right_linearlayout2"
+        android:cacheColorHint="#00000000"/>
 
-        <RelativeLayout
-            android:layout_below="@+id/lower_linear_layout"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="150dip"
-            android:layout_height="wrap_content"
-            android:id="@+id/leftCol"
-            android:layout_above="@+id/org_right_bottom_rl"
-            android:layout_alignParentLeft="true">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/org_left_linearlayout2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/exercise_title"
-                    android:textSize="30dp"
-                    android:text="Exercise"/>
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/lstLeft"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_below="@+id/org_left_linearlayout2"
-                android:cacheColorHint="#00000000"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_below="@+id/lower_linear_layout"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@+id/org_right_bottom_rl"
-            android:layout_alignParentLeft="true">
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/org_right_linearlayout2">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sets"
-                    android:textSize="30dp"
-                    android:text="Sets"/>
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/lstRight"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/org_right_linearlayout2"
-                android:cacheColorHint="#00000000"/>
-
-            <RelativeLayout
-                android:id="@+id/org_right_bottom_rl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-                <Button
-                    android:text="Start Workout"
-                    android:id="@+id/button_8"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="ShowSteps">
-                </Button>
-            </RelativeLayout>
-
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    <Button
+        android:text="Start Workout"
+        android:id="@+id/button_8"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ShowSteps">
+    </Button>
 
 </LinearLayout>

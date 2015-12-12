@@ -1,4 +1,4 @@
-import webapp2, json
+import webapp2, json, re
 from domain.Session import Session
 from domain.WorkoutLogs import WorkoutLogs
 
@@ -11,20 +11,20 @@ class LogWorkout(webapp2.RequestHandler):
         dateDict = {}
         categoryDict = {}
         cntr = 0
-        print "11111"
-        print workoutLogs.WoHistory
-
-        for hist in workoutLogs.WoHistory: # get list of workouts
-            if hist != None:
-                session = Session.query_by_id(hist)
+        if len(workoutLogs.WoHistory) > 0:
+            for hist in workoutLogs.WoHistory: # get list of workouts
+                print "found workout history"
+                session = Session.query_by_id(hist) #hist is session_id
                 exerciseDict[cntr] = session.exercises
                 repsDict[cntr] = session.reps
-                dateDict[cntr] = session.started
+                p = re.compile(r'.*:.*:..')
+                m = p.search(str(session.started))
+                dateDict[cntr] = m.group(0)
                 categoryDict[cntr] = session.category
                 cntr += 1
 
         self.response.write(json.dumps({"exercises": exerciseDict, "reps": repsDict,
-                                        "category": categoryDict})) #"date": dateDict,
+                                        "category": categoryDict, "date": dateDict}))
 
 
     def post(self):

@@ -104,7 +104,7 @@ public class DisplayWorkout extends ActionBarActivity {
                                         Intent intent = new Intent(context, MainActivity.class);
                                         startActivity(intent);
                                         DisplayWorkout.this.finish();
-                                        //finish();
+                                        finish();
                                     }
                                 });
                                 builder.show();

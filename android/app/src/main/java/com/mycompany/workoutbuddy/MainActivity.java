@@ -388,6 +388,8 @@ public class MainActivity extends ActionBarActivity implements
 
     public void myWorkouts(View view) {
         Toast.makeText(getApplicationContext(), "Workout history", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, WorkoutHistory.class);
+        startActivity(intent);
     }
 
     public void runHistory(View view) {

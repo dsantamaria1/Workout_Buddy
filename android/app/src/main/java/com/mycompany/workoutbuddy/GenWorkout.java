@@ -40,27 +40,22 @@ public class GenWorkout extends ActionBarActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                 try {
-                    ArrayAdapter<String> adapter, adapter2;
-                    ListView  listview1 = (ListView) findViewById(R.id.lstLeft);
                     ListView  listview2 = (ListView) findViewById(R.id.lstRight);
-                    List<String> exList = new ArrayList<String>();
+                    ArrayList<String> exList = new ArrayList<String>();
                     List<String> setsList = new ArrayList<String>();
                     JSONObject jObject = new JSONObject(new String(response));
                     String reps = jObject.getString("reps");
                     session_id = jObject.getString("session_id");
-                    //String category = jObject.getString("category");
-                    //TextView textView = (TextView) findViewById(R.id.category);
-                    //textView.setText("Category: " + category);
                     JSONArray ExerciseList = jObject.getJSONArray("exercises");
                     for(int i=0; i < ExerciseList.length(); i++) {
                         exList.add((String) ExerciseList.get(i));
                         setsList.add(reps);
                         System.out.println(exList.get(i));
                     }
-                    adapter=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, exList);
-                    listview1.setAdapter(adapter);
-                    adapter2=new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, setsList);
-                    listview2.setAdapter(adapter2);
+
+
+                    WorkoutAdapter adapter=new WorkoutAdapter(context, exList, reps);
+                    listview2.setAdapter(adapter);
 
                 }
                 catch (JSONException j){

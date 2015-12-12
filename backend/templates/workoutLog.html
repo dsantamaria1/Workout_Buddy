@@ -3,11 +3,7 @@
   <div class="container-fluid">
     <div class="row">
       {% for key, value in category.items() %}
-        <h3> {{value}} </h3>
-<!--
-        {%for key1, value1 in exercises.items() %}
-        {% endfor %}
--->
+        <h3> {{date[key]}}:  {{value}} </h3>
           {% for ex in exercises[key] %}
           <div class="row">
             <div class="col-md-3">
