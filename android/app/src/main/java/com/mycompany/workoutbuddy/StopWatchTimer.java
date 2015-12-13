@@ -6,12 +6,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.Header;
+
 public class StopWatchTimer extends ActionBarActivity {
+    private String TAG  = "Stop Watch Timer";
     private TextView textTimer;
     private Button startButton;
     private Button pauseButton;
@@ -21,6 +29,11 @@ public class StopWatchTimer extends ActionBarActivity {
     long timeInMillies = 0L;
     long timeSwap = 0L;
     long finalTime = 0L;
+
+    private int seconds = 0;
+    private int minutes = 0;
+    private int milliseconds = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +50,7 @@ public class StopWatchTimer extends ActionBarActivity {
                 startTime = SystemClock.uptimeMillis();
                 myHandler.postDelayed(updateTimerMethod, 0);
                 pauseButton.setText("Pause");
+                startButton.setClickable(false);
             }
         });
 
@@ -44,9 +58,9 @@ public class StopWatchTimer extends ActionBarActivity {
             public void onClick(View view) {
                 timeSwap += timeInMillies;
                 myHandler.removeCallbacks(updateTimerMethod);
+                startButton.setClickable(true);
                 if(pauseButton.getText().equals("Pause")){
                     pauseButton.setText("Reset");
-                    Toast.makeText(getApplicationContext(), "Paused", Toast.LENGTH_SHORT).show();
                 }
                 else if(pauseButton.getText().equals("Reset")){
                     pauseButton.setText("Pause");
@@ -62,6 +76,9 @@ public class StopWatchTimer extends ActionBarActivity {
             public void onClick(View view) {
                 timeSwap += timeInMillies;
                 myHandler.removeCallbacks(updateTimerMethod);
+                startButton.setClickable(true);
+                System.out.println(minutes +":" + seconds + ":" +milliseconds);
+                logRun(minutes, seconds, milliseconds);
                 Toast.makeText(getApplicationContext(), "Finished Run!", Toast.LENGTH_SHORT).show();
                 pauseButton.setText("Pause");
                 textTimer.setText("00:00:00");
@@ -76,15 +93,32 @@ public class StopWatchTimer extends ActionBarActivity {
         public void run() {
             timeInMillies = SystemClock.uptimeMillis() - startTime;
             finalTime = timeSwap + timeInMillies;
-            int seconds = (int) (finalTime / 1000);
-            int minutes = seconds / 60;
+
+            seconds = (int) (finalTime / 1000);
+            minutes = seconds / 60;
             seconds = seconds % 60;
-            int milliseconds = (int) (finalTime % 1000);
+            milliseconds = (int) (finalTime % 1000);
             textTimer.setText("" + minutes + ":" + String.format("%02d", seconds) + ":"
-                                + String.format("%03d", milliseconds));
+                    + String.format("%03d", milliseconds));
             myHandler.postDelayed(this, 0);
         }
 
     };
 
+    public void logRun(int minutes, int seconds, int milliseconds){
+        final String request_url = "http://Workoutbuddy-1153.appspot.com/api/logRun";
+        RequestParams params = new RequestParams();
+        params.put("email", MainActivity.email);
+        AsyncHttpClient httpClient = new AsyncHttpClient();
+        httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                Log.w("async", "log workout success!!!!");
+            }
+
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
+            }
+        });
+    }
 }
