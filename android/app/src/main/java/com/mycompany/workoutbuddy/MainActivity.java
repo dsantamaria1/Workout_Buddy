@@ -384,6 +384,8 @@ public class MainActivity extends ActionBarActivity implements
 
     public void newRun(View view) {
         Toast.makeText(getApplicationContext(), "New Run!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, StopWatchTimer.class);
+        startActivity(intent);
     }
 
     public void myWorkouts(View view) {

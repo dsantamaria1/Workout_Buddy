@@ -36,6 +36,10 @@
             android:name=".WorkoutHistory"
             android:label="@string/title_activity_workout_history" >
         </activity>
+        <activity
+            android:name=".StopWatchTimer"
+            android:label="@string/title_activity_stop_watch_timer" >
+        </activity>
     </application>
 
 </manifest>
