@@ -103,7 +103,6 @@ public class DisplayWorkout extends ActionBarActivity {
                                         dialog.cancel();
                                         Intent intent = new Intent(context, MainActivity.class);
                                         startActivity(intent);
-                                        DisplayWorkout.this.finish();
                                         finish();
                                     }
                                 });

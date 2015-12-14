@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="40sp"
+            android:textColor="@color/black"
             android:paddingBottom = "40sp"
             />
         <LinearLayout
@@ -60,15 +61,23 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/new_workout"
-            android:text="New Workout!"
+            android:layout_marginTop="20dp"
+            android:text="New Workout"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:textSize="20sp"
             android:onClick="newWorkout"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/new_run"
-            android:text="New Run!"
+            android:text="New Run"
             android:layout_below="@id/new_workout"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:textSize="20sp"
             android:onClick="newRun"/>
 
         <Button
@@ -78,6 +87,9 @@
             android:text="My Workouts"
             android:clickable="false"
             android:layout_below="@id/new_run"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/gray"
             android:onClick="myWorkouts"/>
 
         <Button
@@ -87,6 +99,10 @@
             android:text="Run History"
             android:clickable="false"
             android:layout_below="@id/my_workout"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/gray"
             android:onClick="runHistory"/>
+
     </LinearLayout>
 </ScrollView>

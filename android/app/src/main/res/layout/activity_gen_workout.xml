@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/exercise_title"
-        android:textSize="35dp"
+        android:textSize="45dp"
         android:text="Exercises"
         android:textStyle="bold"
         android:textColor="@color/text_color"
@@ -24,10 +24,11 @@
         android:cacheColorHint="#00000000"/>
 
     <Button
-        android:text="Start Workout"
+        android:text="Start Workout!"
         android:id="@+id/button_8"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/green"
         android:onClick="ShowSteps">
     </Button>
 

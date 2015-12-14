@@ -1,5 +1,8 @@
 package com.mycompany.workoutbuddy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -15,10 +18,11 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
+import android.content.Context;
 import org.apache.http.Header;
 
 public class StopWatchTimer extends ActionBarActivity {
+    private Context context = this;
     private String TAG  = "Stop Watch Timer";
     private TextView textTimer;
     private Button startButton;
@@ -77,8 +81,35 @@ public class StopWatchTimer extends ActionBarActivity {
                 timeSwap += timeInMillies;
                 myHandler.removeCallbacks(updateTimerMethod);
                 startButton.setClickable(true);
-                System.out.println(minutes +":" + seconds + ":" +milliseconds);
-                logRun(minutes, seconds, milliseconds);
+                System.out.println("builder?");
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Congrats!");
+                builder.setMessage("Do you wish to add this run to your history?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        if (MainActivity.email != null) {
+                            logRun(minutes, seconds, milliseconds);
+                            Toast.makeText(getApplicationContext(), "Run Posted.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            //TODO: add login capability if not currently logged in.
+                            Toast.makeText(getApplicationContext(), "You are not Logged in.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        Intent intent = new Intent(context, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.show();
                 Toast.makeText(getApplicationContext(), "Finished Run!", Toast.LENGTH_SHORT).show();
                 pauseButton.setText("Pause");
                 textTimer.setText("00:00:00");
@@ -107,8 +138,16 @@ public class StopWatchTimer extends ActionBarActivity {
 
     public void logRun(int minutes, int seconds, int milliseconds){
         final String request_url = "http://Workoutbuddy-1153.appspot.com/api/logRun";
+        String time = "";
+        time = String.valueOf(minutes) + "." + String.valueOf(seconds);
+        System.out.println("logRun");
+        System.out.println(minutes);
+        System.out.println(seconds);
+        System.out.println(time);
         RequestParams params = new RequestParams();
         params.put("email", MainActivity.email);
+        params.put("time", time);
+
         AsyncHttpClient httpClient = new AsyncHttpClient();
         httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
             @Override

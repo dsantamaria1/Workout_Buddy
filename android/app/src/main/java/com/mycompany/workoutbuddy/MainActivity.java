@@ -395,7 +395,9 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     public void runHistory(View view) {
-        Toast.makeText(getApplicationContext(), "run History", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Run History", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, RunHistoryGraph.class);
+        startActivity(intent);
     }
 
 }

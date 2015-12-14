@@ -62,19 +62,9 @@ public class WorkoutHistory extends ActionBarActivity {
                         for (int j = 0; j < tmpList.length(); j++){
                             tempList2.add(tmpList.getString(j));
                         }
-                        System.out.println("santa 0");
-                        System.out.println(tempList2);
                         qexerciseList.add( new ArrayList<String>(tempList2));
-                        System.out.println(qexerciseList);
                         tempList2.clear();
                     }
-                    System.out.println("santa 1");
-                    System.out.println(qexerciseList);
-                    System.out.println("santa 2");
-                    System.out.println(exerciseList);
-                    System.out.println(dates);
-                    System.out.println(sets);
-                    System.out.println("hahahahaha");
                     populateMap(dates,qexerciseList,sets);
                     ExpandableListView expListView = (ExpandableListView) findViewById(R.id.ExListView);
                     ExpandableListAdapter expListAdapter = new ExpandableListAdapter(
