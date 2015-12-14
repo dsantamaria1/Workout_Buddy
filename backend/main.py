@@ -34,6 +34,7 @@ from handlers.api.GetAllPhotos import GetAllPhotos
 from handlers.api.GenPush import GenPush
 from handlers.api.ActivateSession import ActivateSession
 from handlers.api.LogWorkout import LogWorkout
+from handlers.api.LogRun import LogRun
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
@@ -68,5 +69,6 @@ app = webapp2.WSGIApplication([
     ('/api/activateSession', ActivateSession),
     ('/endWorkout', EndWorkout),
     ('/api/logWorkout', LogWorkout),
-    ('/dispWorkoutHist', DispWorkoutHist)
+    ('/dispWorkoutHist', DispWorkoutHist),
+    ('/api/logRun', LogRun)
 ], debug = True)

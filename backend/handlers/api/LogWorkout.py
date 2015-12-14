@@ -11,7 +11,7 @@ class LogWorkout(webapp2.RequestHandler):
         dateDict = {}
         categoryDict = {}
         cntr = 0
-        if len(workoutLogs.WoHistory) > 0:
+        if len(workoutLogs.WoHistory) > 0: #TODO: fix to != Null
             for hist in workoutLogs.WoHistory: # get list of workouts
                 print "found workout history"
                 session = Session.query_by_id(hist) #hist is session_id
