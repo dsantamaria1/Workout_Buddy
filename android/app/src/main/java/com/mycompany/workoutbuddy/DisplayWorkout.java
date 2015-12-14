@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 
 import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
+import java.util.concurrent.TimeUnit;
 
 public class DisplayWorkout extends ActionBarActivity {
     Context context = this;
@@ -114,25 +115,52 @@ public class DisplayWorkout extends ActionBarActivity {
                             else if(lastStep == Boolean.TRUE){ //go to next workout
                                 int step = 0; int WO = 1;
                                 getNextStep(step, WO);
+                                try {
+                                    Thread.sleep(350);                 //350 milliseconds is one second.
+                                } catch(InterruptedException ex) {
+                                    Thread.currentThread().interrupt();
+                                }
                                 Toast.makeText(context, "Next Workout", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(context, DisplayWorkout.class);
                                 intent.putExtra(GenWorkout.SESSION_ID, session_id);
                                 intent.putExtra(GenWorkout.IncStep, step);
                                 intent.putExtra(GenWorkout.IncWO, WO);
                                 startActivity(intent);
-                                //finish();
+                                finish();
                             }
                             else{ // go to next step
                                 int step = 1; int WO = 0;
                                 getNextStep(step, WO);
+                                try {
+                                    Thread.sleep(350);                 //350 milliseconds is one second.
+                                } catch(InterruptedException ex) {
+                                    Thread.currentThread().interrupt();
+                                }
                                 Intent intent = new Intent(context, DisplayWorkout.class);
                                 intent.putExtra(GenWorkout.SESSION_ID, session_id);
                                 intent.putExtra(GenWorkout.IncStep, step);
                                 intent.putExtra(GenWorkout.IncWO, WO);
                                 startActivity(intent);
                                 //TODO: add swipe left capability
-                                //finish();
+                                finish();
                             }
+                        }
+
+                        @Override
+                        public void onSwipeRight() { //go to prev workout
+                            int step = -1; int WO = 0;
+                            getPrevStep(step, WO);
+                            try {
+                                Thread.sleep(350);                 //350 milliseconds is one second.
+                            } catch(InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                            }
+                            Intent intent = new Intent(context, DisplayWorkout.class);
+                            intent.putExtra(GenWorkout.SESSION_ID, session_id);
+                            intent.putExtra(GenWorkout.IncStep, 0);
+                            intent.putExtra(GenWorkout.IncWO, WO);
+                            startActivity(intent);
+                            finish();
                         }
                     });
 
@@ -153,6 +181,25 @@ public class DisplayWorkout extends ActionBarActivity {
 
 
     public void getNextStep(int step, int WO){
+        final String request_url = "http://Workoutbuddy-1153.appspot.com/api/activateSession";
+        RequestParams params = new RequestParams();
+        params.put("session_id", session_id);
+        params.put("incStep",step);
+        params.put("incWO", WO);
+        AsyncHttpClient httpClient = new AsyncHttpClient();
+        httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                Log.w("async", "success!!!!");
+            }
+
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
+            }
+        });
+    }
+
+    public void getPrevStep(int step, int WO){
         final String request_url = "http://Workoutbuddy-1153.appspot.com/api/activateSession";
         RequestParams params = new RequestParams();
         params.put("session_id", session_id);

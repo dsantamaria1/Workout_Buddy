@@ -43,9 +43,21 @@ class ActivateSession(webapp2.RequestHandler):
             session.step +=1
             print "incrementing steps"
 
+        if(int(incStep) == -1 and (session.step > 1)):
+            session.step -=1
+            print "incrementing steps"
+        elif(int(incStep) == -1 and (session.step == 1) and (session.currWO > 0)):
+            session.currWO -= 1
+            session.step = 3
+            print "decrementing WO and setting steps to 3"
+
         if ((int(incWO) == 1)):
             if (session.currWO + 1) <= session.totalWOs:
                 session.step = 1 #start at step 1 for next workout
                 session.currWO +=1
                 print "incrementing WORKOUT and resetting steps"
+
+        if(int(incWO) == -1): #reset
+                session.step = 1 #start at step 1 for next workout
+                session.currWO = 0 #start at first WO
         session.put()

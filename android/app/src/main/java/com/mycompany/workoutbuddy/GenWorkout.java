@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,9 +75,26 @@ public class GenWorkout extends ActionBarActivity {
     public void ShowSteps(View view){
         Intent intent = new Intent(this, DisplayWorkout.class);
         intent.putExtra(SESSION_ID, session_id);
-        //intent.putExtra(IncStep, 0);
-        //intent.putExtra(IncWO, 0);
-        Toast.makeText(context, "Swipe left to see the following steps.", Toast.LENGTH_LONG).show();
+
+        final String request_url = "http://Workoutbuddy-1153.appspot.com/api/activateSession";
+        RequestParams params = new RequestParams();
+        params.put("session_id", session_id);
+        params.put("incStep", 0);
+        params.put("incWO", -1);
+        AsyncHttpClient httpClient = new AsyncHttpClient();
+        httpClient.post(request_url, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                Log.w("async", "success!!!!");
+            }
+
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
+            }
+        });
+
+
+        Toast.makeText(context, "Swipe left to see the following steps. Swipe right to see previous step.", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 }
