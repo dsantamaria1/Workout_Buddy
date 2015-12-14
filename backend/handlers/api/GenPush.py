@@ -26,7 +26,7 @@ class GenPush(webapp2.RequestHandler):
         exerciseList = []
         exerciseList.append(random.choice(PushList))
         exerciseList.append(random.choice(PullList))
-        reps = random.choice(['5x5','4x10','4x15'])
+        reps = random.choice(['5 sets of 5','4 sets of 10','4 sets of 15'])
         totalWOs = len(exerciseList)
 
         session = Session(category=category, exercises=exerciseList,reps=reps,currWO=0,

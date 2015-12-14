@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class GenWorkout extends ActionBarActivity {
     private String TAG  = "GenWorkout";
@@ -74,6 +75,7 @@ public class GenWorkout extends ActionBarActivity {
         intent.putExtra(SESSION_ID, session_id);
         //intent.putExtra(IncStep, 0);
         //intent.putExtra(IncWO, 0);
+        Toast.makeText(context, "Swipe left to see the following steps.", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 }

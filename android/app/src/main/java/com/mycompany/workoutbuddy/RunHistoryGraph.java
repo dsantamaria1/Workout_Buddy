@@ -8,6 +8,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.GridLabelRenderer.GridStyle;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 import com.loopj.android.http.AsyncHttpClient;
@@ -72,6 +73,14 @@ public class RunHistoryGraph extends ActionBarActivity {
 
                     graph.getViewport().setYAxisBoundsManual(true);
                     graph.getViewport().setMinY(0);
+                    graph.setTitle("Run Duration");
+                    graph.setTitleTextSize(100);
+
+                    GridLabelRenderer gridLabel = graph.getGridLabelRenderer();
+                    gridLabel.setHorizontalAxisTitle("Date");
+                    gridLabel.setHorizontalAxisTitleTextSize(50);
+                    gridLabel.setVerticalAxisTitle("Time in Minutes");
+
                     series.setSpacing(10);
                 } catch (JSONException j) {
                     System.out.println("JSON Error");

@@ -7,6 +7,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="welcome">Welcome to Workout Buddy!</string>
+    <string name="choose">Choose from one of the categories below and workout will be generated for you</string>
     <string name="uploadImage">Upload Image</string>
     <string name="upload_hint">Add a caption for photo</string>
     <string name="choose_from_library">Choose From Library</string>
@@ -40,6 +41,6 @@
     <string name="configuration_error">Error: the value of WEB_CLIENT_ID or SERVER_BASE_URL is not  set correctly. This will cause errors when requesting a server auth code.</string>
     <string name="title_activity_workout_history">Workout Buddy</string>
     <string name="title_activity_stop_watch_timer">Workout Buddy</string>
-    <string name="title_activity_run_history_graph">Workout Buddy</string>
+    <string name="title_activity_run_history_graph">RunHistoryGraph</string>
 
 </resources>

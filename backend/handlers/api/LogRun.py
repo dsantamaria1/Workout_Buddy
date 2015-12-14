@@ -17,7 +17,7 @@ class LogRun(webapp2.RequestHandler):
                 tempList2 = list(tempList[:5])
             else:
                 tempList2 = list(tempList)
-            print tempList2
+                
             for run in tempList2:
                 print run
                 runHist = Run.query_by_id(run) #run is key_id(), runHist is Run object

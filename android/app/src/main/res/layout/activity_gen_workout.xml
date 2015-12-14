@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/background"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/exercise_title"
-        android:textSize="45dp"
+        android:textSize="55sp"
         android:text="Exercises"
         android:textStyle="bold"
         android:textColor="@color/text_color"
@@ -20,16 +21,20 @@
         android:id="@+id/lstRight"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/org_right_linearlayout2"
+        android:layout_below="@+id/exercise_title"
         android:cacheColorHint="#00000000"/>
 
     <Button
         android:text="Start Workout!"
         android:id="@+id/button_8"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green"
+        android:background="@color/orange"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:layout_below="@+id/lstRight"
+        android:layout_centerInParent="true"
         android:onClick="ShowSteps">
     </Button>
 
-</LinearLayout>
+</RelativeLayout>

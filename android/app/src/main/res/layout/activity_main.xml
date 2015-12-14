@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="vertical"
+    android:background="@color/background"
     >
 
     <LinearLayout
@@ -64,8 +65,9 @@
             android:layout_marginTop="20dp"
             android:text="New Workout"
             android:textColor="@color/white"
-            android:background="@color/green"
+            android:background="@color/orange"
             android:textSize="20sp"
+            android:layout_centerInParent="true"
             android:onClick="newWorkout"/>
 
         <Button
@@ -76,7 +78,7 @@
             android:layout_below="@id/new_workout"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:background="@color/green"
+            android:background="@color/orange"
             android:textSize="20sp"
             android:onClick="newRun"/>
 

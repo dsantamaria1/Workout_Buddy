@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.app.AlertDialog;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.DialogInterface;
@@ -43,6 +44,7 @@ public class DisplayWorkout extends ActionBarActivity {
         final TextView textView = (TextView) findViewById(R.id.instructions);
         final TextView textViewTitle = (TextView) findViewById(R.id.title);
         final ImageView imageView = (ImageView) findViewById(R.id.imageDisplay);
+
         Intent intent = getIntent();
         session_id = intent.getStringExtra(GenWorkout.SESSION_ID);
         incStep = intent.getIntExtra(GenWorkout.IncStep,0);
@@ -71,7 +73,8 @@ public class DisplayWorkout extends ActionBarActivity {
                     textViewTitle.setText(WorkoutName);
                     System.out.println("before");
 
-                    imageView.setOnTouchListener(new OnSwipeTouchListener(context){
+                    LinearLayout ll = (LinearLayout) findViewById(R.id.linLayoutSwipe);
+                    ll.setOnTouchListener(new OnSwipeTouchListener(context){
                         //TODO: swipe Right
                         @Override
                         public void onSwipeLeft(){ //go to next step or workout
@@ -122,7 +125,6 @@ public class DisplayWorkout extends ActionBarActivity {
                             else{ // go to next step
                                 int step = 1; int WO = 0;
                                 getNextStep(step, WO);
-                                Toast.makeText(context, "Next Step", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(context, DisplayWorkout.class);
                                 intent.putExtra(GenWorkout.SESSION_ID, session_id);
                                 intent.putExtra(GenWorkout.IncStep, step);
@@ -145,7 +147,10 @@ public class DisplayWorkout extends ActionBarActivity {
                 Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
             }
         });
+
+
     }
+
 
     public void getNextStep(int step, int WO){
         final String request_url = "http://Workoutbuddy-1153.appspot.com/api/activateSession";
@@ -185,4 +190,22 @@ public class DisplayWorkout extends ActionBarActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        //builder.setTitle("Congratulations!");
+        builder.setMessage("Do you want to exit this workout?");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        builder.show();
+    }
 }

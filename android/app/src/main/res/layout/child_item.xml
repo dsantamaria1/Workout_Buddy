@@ -15,7 +15,9 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/text_color"
-            android:paddingLeft="25dp" />
+            android:paddingLeft="25dp"
+            android:textSize="20sp"
+            />
     </LinearLayout>
 
     <LinearLayout android:id="@+id/LinearLayout03"
@@ -30,7 +32,9 @@
             android:layout_centerVertical="true"
             android:textColor="@color/text_color"
             android:paddingLeft="25dp"
-            android:layout_below="@+id/exercise"/>
+            android:layout_below="@+id/exercise"
+            android:textSize="20sp"
+            />
     </LinearLayout>
 
 

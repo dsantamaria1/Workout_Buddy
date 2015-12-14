@@ -42,29 +42,29 @@ public class WorkoutHistory extends ActionBarActivity {
                     JSONObject date = jObject.getJSONObject("date");
                     JSONObject exercises = jObject.getJSONObject("exercises");
                     JSONObject reps = jObject.getJSONObject("reps");
-                    //JSONObject category = jObject.getJSONObject("category");
                     ArrayList<String> dates = new ArrayList<String>();
                     ArrayList<String> sets = new ArrayList<String>();
-                    ArrayList<JSONArray> tempList = new ArrayList<JSONArray>();
                     ArrayList<String> tempList2 = new ArrayList<String>();
                     ArrayList<JSONArray> exerciseList = new ArrayList<JSONArray>();
                     ArrayList<ArrayList<String>> qexerciseList = new ArrayList<ArrayList<String>>();
 
-                    for(int i = 0; i < date.names().length(); i++){
-                        dates.add(date.getString(date.names().getString(i)));
-                        exerciseList.add(exercises.getJSONArray(date.names().getString(i)));
-                        //displayStreams = exercises.getJSONArray(date.names().getString(i));
-                        sets.add(reps.getString(date.names().getString(i)));
+                    if(date.names() != null) {
+                        for(int i = 0; i < date.names().length(); i++){
+                            dates.add(date.getString(date.names().getString(i)));
+                            exerciseList.add(exercises.getJSONArray(date.names().getString(i)));
+                            sets.add(reps.getString(date.names().getString(i)));
 
-                    }
-                    for (int i = 0; i < exerciseList.size(); i++){
-                        JSONArray tmpList = exerciseList.get(i);
-                        for (int j = 0; j < tmpList.length(); j++){
-                            tempList2.add(tmpList.getString(j));
                         }
-                        qexerciseList.add( new ArrayList<String>(tempList2));
-                        tempList2.clear();
+                        for (int i = 0; i < exerciseList.size(); i++){
+                            JSONArray tmpList = exerciseList.get(i);
+                            for (int j = 0; j < tmpList.length(); j++){
+                                tempList2.add(tmpList.getString(j));
+                            }
+                            qexerciseList.add( new ArrayList<String>(tempList2));
+                            tempList2.clear();
+                        }
                     }
+
                     populateMap(dates,qexerciseList,sets);
                     ExpandableListView expListView = (ExpandableListView) findViewById(R.id.ExListView);
                     ExpandableListAdapter expListAdapter = new ExpandableListAdapter(

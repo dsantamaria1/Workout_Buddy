@@ -240,6 +240,8 @@ public class MainActivity extends ActionBarActivity implements
         Button myWOBUtton = (Button) findViewById(R.id.my_workout);
         Button myRunHistory = (Button) findViewById(R.id.run_history);
 
+        myWOBUtton.setEnabled(true);
+        myRunHistory.setEnabled(true);
         myWOBUtton.setClickable(true);
         myRunHistory.setClickable(true);
 
@@ -358,7 +360,9 @@ public class MainActivity extends ActionBarActivity implements
         Button myWOBUtton = (Button) findViewById(R.id.my_workout);
         Button myRunHistory = (Button) findViewById(R.id.run_history);
 
+        myWOBUtton.setEnabled(false);
         myWOBUtton.setClickable(false);
+        myRunHistory.setEnabled(false);
         myRunHistory.setClickable(false);
 
 
@@ -383,19 +387,16 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     public void newRun(View view) {
-        Toast.makeText(getApplicationContext(), "New Run!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, StopWatchTimer.class);
         startActivity(intent);
     }
 
     public void myWorkouts(View view) {
-        Toast.makeText(getApplicationContext(), "Workout history", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, WorkoutHistory.class);
         startActivity(intent);
     }
 
     public void runHistory(View view) {
-        Toast.makeText(getApplicationContext(), "Run History", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, RunHistoryGraph.class);
         startActivity(intent);
     }

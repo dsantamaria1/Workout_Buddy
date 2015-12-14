@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name=".RunHistoryGraph"
-            android:label="@string/title_activity_run_history_graph" >
+            android:label="@string/title_activity_run_history_graph">
         </activity>
     </application>
 
